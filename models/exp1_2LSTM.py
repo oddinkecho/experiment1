@@ -28,7 +28,7 @@ class lwLSTM(nn.Module):
         embedded = self.dropout(embedded)
 
         # pack_padded_sequence 处理可变长度
-        packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, text_lengths.to('cpu'))
+        packed_embedded = nn.utils.rnn.pack_padded_sequence(embedded, text_lengths.to('cpu'), enforce_sorted=False)
 
         packed_output, (hidden, cell) = self.lstm(packed_embedded)
 
